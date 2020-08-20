@@ -1,0 +1,44 @@
+---
+title: "FAW management practices used by farmers"
+output: html_notebook
+---
+
+```{r}
+library(readr)
+Survey_ZM1 <- read_csv("C:/Users/CChisonga/Desktop/Manuscript/Survey_ZM1.csv")
+View(Survey_ZM1)
+```
+
+```{r}
+names(Survey_ZM1)
+Survey_ZM1.tab<-table(Survey_ZM1$Gender, Survey_ZM1$Applied_any_practice_yn)
+Survey_ZM1.tab
+margin.table(Survey_ZM1.tab,1)
+margin.table(Survey_ZM1.tab,2)
+round(prop.table(Survey_ZM1.tab,2))
+round(prop.table(Survey_ZM1.tab,1),2)
+round(prop.table(Survey_ZM1.tab,2),2)
+chisq.test(Survey_ZM1.tab)
+```
+
+```{r}
+library(gmodels)
+CrossTable(Survey_ZM1$Gender, Survey_ZM1$Applied_any_practice_yn, prop.chisq = TRUE)
+```
+
+```{r}
+Survey_ZM1.tab<-table(Survey_ZM1$Gender,Survey_ZM1$practices_used1)
+Survey_ZM1.tab
+margin.table(Survey_ZM1.tab,1)
+margin.table(Survey_ZM1.tab,2)
+round(prop.table(Survey_ZM1.tab,2))
+round(prop.table(Survey_ZM1.tab,1),2)
+round(prop.table(Survey_ZM1.tab,2),2)
+chisq.test(Survey_ZM1.tab)
+```
+
+```{r}
+library(gmodels)
+CrossTable(Survey_ZM1$practices_used1, Survey_ZM1$Gender, prop.chisq = TRUE)
+```
+
